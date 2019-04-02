@@ -1,0 +1,160 @@
+
+
+
+
+Working with Links – Hard links
+ln f1 hf1
+
+
+f1 should be an existing file name
+hf1 and f1 share inode number 
+As a consequence, single instance of attributes and data shared between f1 and hf1
+Link count incremented by one
+Can span only a single file system
+Can not link directories
+Deleting f1 or hf1 first decrements link count
+Inode & data blocks freed only if link count reaches zero
+
+
+
+
+Working with soft – symbolic links 
+ln -s f1 sf1
+
+
+f1 should be existing file name
+f1 and sf1 have different inode numbers
+As a consequence, separate instances of attributes and data
+Data part of soft link has the file name to  which it links
+Can span across file systems
+Opening soft link opens the file linked to
+Can span across file systems
+Soft link and the file linked can be deleted independent of the other 
+
+Processes
+Process - an instance of a program in execution
+Identiifed by a process id and has a parent process id
+Only a process can create another process
+First user process, init, created by kernel with PID=1 
+Shell spawns a child process for commands
+Foreground execution:
+ sleep 20
+ Waits until child terminates and redisplays prompt 
+Background execution:
+ sleep 20 &
+ Display prompt immediately without waiting
+ Generates a termination status later on activity
+Process Status 
+
+ps
+ps -f
+ps -u userid
+ps -l
+ps -e
+
+Job and Process control
+kill PID
+kill -9 PID           Sure kill 
+kill $!               Last background process
+Fore ground job termination
+sleep 300 
+ctrl-c
+Fore ground job suspension
+sleep 300 
+ctrl-z
+Listing the jobs
+jobs
+Resumption of execution
+fg %jobid    Resume in the fore ground
+bg %jobid    Resume in the back ground
+
+Job control Examples
+sleep 500 &
+sleep 400 &
+jobs
+sleep 700
+ctrl-z
+jobs
+fg %jobid
+ctrl-z
+jobs
+bg %jobid
+jobs
+
+Nice and nohup
+nice : Being nice to others, not to oneself
+nice command 
+nice command &
+nice -nicevalue command         
+       Default nicevalue=15
+nicevalues: 
+       0-19 normal users. -20 to 19 super user
+nice -15 sort database > sorteddata &
+
+nohup : Don't hanup with logout
+nohup comand &
+Output saved in file nohup.out	in current directory
+nohup sort database &
+
+
+Entering input modes 
+i  - Insert at cursor
+I  - Insert at the beginning of line
+a  - Add after the cursor position
+A  - Append at the end of line
+r  - Replace one char
+R  - Replace mode
+o  - Open a new line below cursor
+O  - Open a new line at cursor
+
+Command mode 
+x      - Delete one char
+20x    - Delete 20 chars
+dw     - Delete current word, from cusor to end
+4dw    - Delete 4 words
+dd     - Delete current line
+5dd    - Delete 5 lines
+yw     - Copy current word, from cursor to end
+2yw    - Copy 2 words
+yy     - Copy current line
+10yy   - Copy 10 lines
+p      - Paste from next line/char
+P      - Paste from current line/char
+u      - Undo 
+ctrl-r - Redo   
+
+
+Command mode 
+hjkl     - Left down up right cursor movements
+$        - End of line
+0        - Beginning of line
+w        - Beginning of next word
+3W       - Beginning of 3rd next word
+b        - Beginning of previous word
+5B       - Beginning of 5th previous word
+/pattern - Search forward for a match
+           - n next match
+           - N previous match
+?pattern - search backward for a match
+           - n previous match
+           - N next match 
+
+Command line mode 
+:w             - Save
+:w filename    - Save to the file
+:q             - Quit
+:wq            - Save and quit. 
+                  ZZ (uppercase) in command mode
+:q!            - Force quit without saving
+:100           - Move to 100th line.
+:$             - Move to last line
+:set number    - Display line numbers
+:set nonumber  - Disable line numbers
+:set hlsearch  - Hightlight search matchs
+:set nohlsearch- Disable highlighting
+
+Command line mode
+:!cmd          - Execute shell command
+:r filename    - Load file at next line
+:r!cmd         - Command output from next line
+
