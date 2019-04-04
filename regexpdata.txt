@@ -1,0 +1,13 @@
+This is a line with *$ 
+*$ at the begining
+at the end *$
+*$
+$*
+^$
+A line with ^$ 
+with \\ try this
+ending with one backslash and spaces after that  \   
+ending with one backslash and no spaces after that  \
+A line with \* 
+with  \\**  on this line. 
+with a\ on this line 
